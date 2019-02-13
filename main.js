@@ -17,8 +17,8 @@ $("document").ready(function() {
 
             instructionsCanvas,
             // mainTrial,
-	          //sliderRating_trans,
-	          //sliderRating_audio,
+	          sliderRating_trans,
+	          sliderRating_audio,
 	          sliderRating_video,
 
             instructionsPostTest,

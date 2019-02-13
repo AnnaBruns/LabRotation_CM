@@ -26,19 +26,7 @@ const instructions = babeViews.instructions({
     trials: 1,
     name: 'instructions',
     title: 'General Instructions',
-    text:  `First you will read the transcripts of several utterances. Please answer the question on the bottom by sliding the slider to the position that represents your intuition.
-            <br />
-            <br />
-            In the next part, you will listen to Audios that belong to the transcripts. Please answer the same question again by sliding the slider to the position that represents your intuition. 
-	    <br />
-            <br />
-	    In the last part, you will see the videos that belong to the transcripts and the audios. Please answer the same question again by sliding the slider to the position that represents your intuition.
-	    <br />
-            <br /> 
-	    The slider position does not have to be the same for transcript, audio and video sequence, your intuition may have changed when audible and visual context is given.
-	    <br />
-            <br />
-            The practice trial view uses babe's <a href='https://github.com/babe-project/babe-project/blob/master/docs/images/views_samples/view_fc.png'>slider rating view</a>.`,
+    text:  `Please answer the questions according to what you think the speaker is expressing.`,
     buttonText: 'to the practice trial'
 });
 
@@ -64,20 +52,20 @@ const instructionsPostTest = babeViews.instructions({
 const postTest = babeViews.postTest({
     trials: 1,
     name: 'post_test',
-    title: 'Weitere Angaben',
-    text: 'Die Beantwortung der folgenden Fragen ist optional, aber es kann bei der Auswirkung hilfreich sein, damit wir Ihre Antworten besser verstehen.',
-    buttonText: 'Weiter',
-    age_question: 'Alter',
-    gender_question: 'Geschlecht',
-    gender_male: 'männlich',
-    gender_female: 'weiblich',
-    edu_question: 'Höchster Bildungsabschluss',
-    edu_graduated_high_school: 'Abitur',
-    edu_graduated_college: 'Hochschulabschluss',
-    edu_higher_degree: 'Universitärer Abschluss',
-    languages_question: 'Muttersprache',
-    languages_more: '(in der Regel die Sprache, die Sie als Kind zu Hause gesprochen haben)',
-    comments_question: 'Weitere Kommentare'
+    title: 'Further Information',
+    text: 'To answer the following questions is optional, however it may help to understand your answers better.',
+    buttonText: 'Next',
+    age_question: 'Age',
+    gender_question: 'Gender',
+    gender_male: 'male',
+    gender_female: 'female',
+    edu_question: 'Highest educational degree',
+    edu_graduated_high_school: 'High School graduation',
+    edu_graduated_college: 'College graduation',
+    edu_higher_degree: 'Higher educational degree',
+    languages_question: 'Mother language',
+    languages_more: '(mostly, the language you spoke at home when you were a child)',
+    comments_question: 'Furher comments'
 });
 
 const links = babeViews.instructions({
@@ -150,7 +138,7 @@ const thanks = babeViews.thanks({
 */
 
 
-var sliderRatingVideo = function(config) {
+var sliderRatingStimulus = function(config) {
         babeUtils.view.inspector.missingData(config, "slider rating");
         babeUtils.view.inspector.params(config, "slider rating");
         const sliderRatingVideo = {
@@ -162,13 +150,14 @@ var sliderRatingVideo = function(config) {
                     config.data[CT].question
                 );
                 const QUD = babeUtils.view.setter.QUD(config.data[CT].QUD);
-                const option1 = config.data[CT].optionLeft;
+                const stimulus = config.data[CT].stimulus;
+		const option1 = config.data[CT].optionLeft;
                 const option2 = config.data[CT].optionRight;
                 const viewTemplate = `<div class='babe-view'>
                     <h1 class='babe-view-title'>${this.title}</h1>
                     <p class='babe-view-question babe-view-QUD'>${QUD}</p>
                     <div class='babe-view-stimulus-container'>
-                        <div class='babe-view-stimulus babe-nodisplay'></div>
+                        <div class='babe-view-stimulus babe-nodisplay'>${stimulus}<></div>
                     </div>
                 </div>`;
 
@@ -304,23 +293,24 @@ const pressTheButton = function(config) {
 // });
 
 // this view is part of the canvas sample
-// const sliderRating_trans = babeViews.sliderRating({
-//     trials: 3,
-//     name: 'slider_rating_transcripts',
-//     trial_type: 'slider_rating_main_t',
-//     data: main_trials_transcript.sliderRating 
-// });
+const sliderRating_trans = babeViews.sliderRating({
+     trials: 3,
+     name: 'slider_rating_transcripts',
+     trial_type: 'slider_rating_main_t',
+     data: main_trials_transcript.sliderRating 
+ });
 
-// const sliderRating_audio = babeViews.sliderRating_Audio({
-//     trials: 1,
-//     name: 'slider_rating_audios',
-//     trial_type: 'slider_rating_main_a',
-//     data: main_trials_audio.sliderRating_Audio
-// });
+ const sliderRating_audio = sliderRatingStimulus({
+     trials: 2,
+     name: 'slider_rating_audios',
+     trial_type: 'slider_rating_main_a',
+     data: main_trials_audio.sliderRating_Audio
+});
 
-const sliderRating_video = sliderRatingVideo({
-    trials: 1,
+const sliderRating_video = sliderRatingStimulus({
+    trials: 2,
     name: 'slider_rating_videos',
     trial_type: 'slider_rating_main_v',
     data: main_trials_video.sliderRating_Video
 });
+
