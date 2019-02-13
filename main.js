@@ -13,32 +13,13 @@ $("document").ready(function() {
             intro,
 
             instructions,
-            practiceForcedChoice,
+            practiceSliderRating,
 
             instructionsCanvas,
-            dropdownChoice,
+	    sliderRating_trans,
+	    sliderRating_audio,
+	    sliderRating_video,
 
-            instructionsLoop,
-            babeUtils.views.loop([
-                sentenceChoice,
-                imageSelection
-            ], 2),
-
-            instructionsLifecycle,
-            sliderRating,
-            textboxInput,
-
-            instructionsHooks,
-            ratingScale,
-
-            instructionsProgressBar,
-            spr,
-            sprRatingScale,
-
-            instructionsExperiment,
-            keyPressPractice,
-            beginRealKeyPress,
-            keyPressMain,
 
             instructionsPostTest,
             postTest,
