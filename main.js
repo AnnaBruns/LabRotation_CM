@@ -13,13 +13,13 @@ $("document").ready(function() {
             intro,
 
             instructions,
-            practiceSliderRating,
+            //practiceSliderRating,
 
             instructionsCanvas,
-	    sliderRating_trans,
-	    sliderRating_audio,
-	    sliderRating_video,
-
+            // mainTrial,
+	          //sliderRating_trans,
+	          //sliderRating_audio,
+	          sliderRating_video,
 
             instructionsPostTest,
             postTest,

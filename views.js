@@ -149,30 +149,176 @@ const thanks = babeViews.thanks({
 
 */
 
+
+var sliderRatingVideo = function(config) {
+        babeUtils.view.inspector.missingData(config, "slider rating");
+        babeUtils.view.inspector.params(config, "slider rating");
+        const sliderRatingVideo = {
+            name: config.name,
+            title: babeUtils.view.setter.title(config.title, ""),
+            render: function(CT, babe) {
+                let startingTime;
+                const question = babeUtils.view.setter.question(
+                    config.data[CT].question
+                );
+                const QUD = babeUtils.view.setter.QUD(config.data[CT].QUD);
+                const option1 = config.data[CT].optionLeft;
+                const option2 = config.data[CT].optionRight;
+                const viewTemplate = `<div class='babe-view'>
+                    <h1 class='babe-view-title'>${this.title}</h1>
+                    <p class='babe-view-question babe-view-QUD'>${QUD}</p>
+                    <div class='babe-view-stimulus-container'>
+                        <div class='babe-view-stimulus babe-nodisplay'></div>
+                    </div>
+                </div>`;
+
+                const answerContainerElem = `<p class='babe-view-question'>${question}</p>
+                <div class='babe-view-answer-container'>
+                    <span class='babe-response-slider-option'>${option1}</span>
+                    <input type='range' id='response' class='babe-response-slider' min='0' max='100' value='50'/>
+                    <span class='babe-response-slider-option'>${option2}</span>
+                </div>
+                <button id="next" class='babe-view-button babe-nodisplay'>Next</button>`;
+
+                $("#main").html(viewTemplate);
+
+                const enableResponse = function() {
+                    let response;
+
+                    $(".babe-view").append(answerContainerElem);
+
+                    response = $("#response");
+                    // checks if the slider has been changed
+                    response.on("change", function() {
+                        $("#next").removeClass("babe-nodisplay");
+                    });
+                    response.on("click", function() {
+                        $("#next").removeClass("babe-nodisplay");
+                    });
+
+                    $("#next").on("click", function() {
+                        const RT = Date.now() - startingTime; // measure RT before anything else
+                        const trial_data = {
+                            trial_type: config.trial_type,
+                            trial_number: CT + 1,
+                            response: response.val(),
+                            RT: RT
+                        };
+
+                        for (let prop in config.data[CT]) {
+                            if (config.data[CT].hasOwnProperty(prop)) {
+                                trial_data[prop] = config.data[CT][prop];
+                            }
+                        }
+
+                        if (config.data[CT].picture !== undefined) {
+                            trial_data.picture = config.data[CT].picture;
+                        }
+
+                        if (config.data[CT].canvas !== undefined) {
+                            for (let prop in config.data[CT].canvas) {
+                                if (
+                                    config.data[CT].canvas.hasOwnProperty(prop)
+                                ) {
+                                    trial_data[prop] =
+                                        config.data[CT].canvas[prop];
+                                }
+                            }
+                        }
+
+                        babe.trial_data.push(trial_data);
+                        babe.findNextView();
+                    });
+                };
+
+                startingTime = Date.now();
+
+                // creates the DOM of the trial view
+                babeUtils.view.createTrialDOM(
+                    {
+                        pause: config.pause,
+                        fix_duration: config.fix_duration,
+                        stim_duration: config.stim_duration,
+                        data: config.data[CT],
+                        evts: config.hook,
+                        view: "sliderRatingVideo"
+                    },
+                    enableResponse
+                );
+            },
+            CT: 0,
+            trials: config.trials
+        };
+
+        return sliderRatingVideo;
+}
+
+
+const pressTheButton = function(config) {
+    const _pressTheButton = {
+        name: config.name,
+        title: config.title,
+        buttonText: config.buttonText,
+        render(CT, babe) {
+            let startTime = Date.now();
+
+            const viewTemplate =
+            `<div class='view'>
+                <h1 class="title">${this.title}</h1>
+                <button id="the-button">${this.buttonText}</button>
+            </div>`;
+
+            $("#main").html(viewTemplate);
+
+            $('#the-button').on('click', function(e) {
+                babe.trial_data.push({
+                    trial_type: config.trial_type,
+                    trial_number: CT+1,
+                    RT: Date.now() - startTime
+                });
+                babe.findNextView();
+            });
+        },
+        CT: 0,
+        trials: config.trials
+    };
+
+    return _pressTheButton;
+};
+
+// const mainTrial = sliderRatingVideo({
+//     name: 'buttonPress',
+//     title: 'How quickly can you press this button?',
+//     buttonText: 'Press me!',
+//     trial_type: 'main',
+//     trials: 1
+// });
+
+
 // part of the practice sample
-const practiceSliderRating = babeViews.sliderRating({
-    trials: 1,
-    name: 'practice_trial',
-    trial_type: 'slider_rating_practice',
-    data: practice_trials.sliderRating
-});
+// const practiceSliderRating = babeViews.sliderRating({
+//     trials: 1,
+//     name: 'practice_trial',
+//     trial_type: 'slider_rating_practice',
+//     data: practice_trials.sliderRating
+// });
 
 // this view is part of the canvas sample
-const sliderRating_trans = babeViews.sliderRating({
-    trials: 39,
-    name: 'slider_rating_transcripts',
-    trial_type: 'slider_rating_main_t',
-    data: main_trials_transcript.sliderRating
-});
+// const sliderRating_trans = babeViews.sliderRating({
+//     trials: 3,
+//     name: 'slider_rating_transcripts',
+//     trial_type: 'slider_rating_main_t',
+//     data: main_trials_transcript.sliderRating 
+// });
 
-const sliderRating_audio = babeViews.sliderRating_Audio({
-    trials: 1,
-    name: 'slider_rating_audios',
-    trial_type: 'slider_rating_main_a',
-    data: main_trials_audio.sliderRating_Audio
-});
+// const sliderRating_audio = babeViews.sliderRating_Audio({
+//     trials: 1,
+//     name: 'slider_rating_audios',
+//     trial_type: 'slider_rating_main_a',
+//     data: main_trials_audio.sliderRating_Audio
+// });
 
-const sliderRating_video = babeViews.sliderRating_Video({
+const sliderRating_video = sliderRatingVideo({
     trials: 1,
     name: 'slider_rating_videos',
     trial_type: 'slider_rating_main_v',
