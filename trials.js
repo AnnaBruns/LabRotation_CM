@@ -323,11 +323,26 @@ const main_trials_audio = {
    sliderRating_Audio: [
         {
 	    QUD: "Audio", 
-	    picture:"<a><audio controls="controls" src="pisa.vrnewsscape.ucla.edu/newsscape_wav_snippet.cgi?file=1c5325da-ce7f-11e6-8ca3-089e01ba034d&start=2727.8&end=2742.2"></audio></a",
+	    picture:"<a><audio controls="controls" src="http://pisa.vrnewsscape.ucla.edu/newsscape_wav_snippet.cgi?file=1c5325da-ce7f-11e6-8ca3-089e01ba034d&start=2727.8&end=2742.2"></audio></a",
             question: "How happy is the dog according to the speaker?",
 	    optionLeft: "very unhappy",
             optionRight: "happiest dog in the world"
         },
+	    QUD: "Audio", 
+	    audio:"<embed src="http://pisa.vrnewsscape.ucla.edu/newsscape_wav_snippet.cgi?file=1c5325da-ce7f-11e6-8ca3-089e01ba034d&start=2727.8&end=2742.2" autostart="false" playcount="2"/>",
+            question: "How happy is the dog according to the speaker?",
+	    optionLeft: "very unhappy",
+            optionRight: "happiest dog in the world"
+        },
+
+        {
+	    QUD: "Audio", 
+	    audio:"<audio controls><source src="http://pisa.vrnewsscape.ucla.edu/newsscape_wav_snippet.cgi?file=1c5325da-ce7f-11e6-8ca3-089e01ba034d&start=2727.8&end=2742.2"><p>Your browser doesn't support HTML5 audio. Here is a <a href="http://pisa.vrnewsscape.ucla.edu/newsscape_wav_snippet.cgi?file=1c5325da-ce7f-11e6-8ca3-089e01ba034d&start=2727.8&end=2742.2">link to the audio</a> instead.</p></audio>",
+            question: "How happy is the dog according to the speaker?",
+	    optionLeft: "very unhappy",
+            optionRight: "happiest dog in the world"
+        },
+
     ],
 }
 
@@ -341,6 +356,31 @@ const main_trials_video = {
 	    optionLeft: "very unhappy",
             optionRight: "happiest dog in the world"
         },
+
+        {
+	    QUD: "Video", 
+	    video:"<video id="sampleMovie" src="http://pisa.vrnewsscape.ucla.edu/newsscape_mp4_snippet.cgi?file=1c5325da-ce7f-11e6-8ca3-089e01ba034d&start=2727.8&end=2742.2" preload></video>",
+            question: "How happy is the dog according to the speaker?",
+	    optionLeft: "very unhappy",
+            optionRight: "happiest dog in the world"
+        },
+	
+	{
+	    QUD: "Video", 
+	    video:"<embed src="http://pisa.vrnewsscape.ucla.edu/newsscape_mp4_snippet.cgi?file=1c5325da-ce7f-11e6-8ca3-089e01ba034d&start=2727.8&end=2742.2" autostart="false" height="30" width="144" playcount="2"/>",
+            question: "How happy is the dog according to the speaker?",
+	    optionLeft: "very unhappy",
+            optionRight: "happiest dog in the world"
+        },
+
+	{
+	    QUD: "Video", 
+	    video:"<video controls><source src="http://pisa.vrnewsscape.ucla.edu/newsscape_mp4_snippet.cgi?file=1c5325da-ce7f-11e6-8ca3-089e01ba034d&start=2727.8&end=2742.2"><p>Your browser doesn't support HTML5 video. Here is a <a href="http://pisa.vrnewsscape.ucla.edu/newsscape_mp4_snippet.cgi?file=1c5325da-ce7f-11e6-8ca3-089e01ba034d&start=2727.8&end=2742.2">link to the video</a> instead.</p></video>",
+            question: "How happy is the dog according to the speaker?",
+	    optionLeft: "very unhappy",
+            optionRight: "happiest dog in the world"
+        },
+
 
     ],
 }
