@@ -323,7 +323,7 @@ const main_trials_audio = {
    sliderRating_Audio: [
         {
 	    QUD: "Audio", 
-	    picture:"<a><video id="sampleMovie" src=href='pisa.vrnewsscape.ucla.edu/newsscape_wav_snippet.cgi?file=1c5325da-ce7f-11e6-8ca3-089e01ba034d&start=2727.8&end=2742.2'></video></a",
+	    picture:"<a><audio controls="controls" src="pisa.vrnewsscape.ucla.edu/newsscape_wav_snippet.cgi?file=1c5325da-ce7f-11e6-8ca3-089e01ba034d&start=2727.8&end=2742.2"></audio></a",
             question: "How happy is the dog according to the speaker?",
 	    optionLeft: "very unhappy",
             optionRight: "happiest dog in the world"
@@ -336,7 +336,7 @@ const main_trials_video = {
    sliderRating_Video: [
         {
 	    QUD: "Video", 
-	    picture:"<a><video id="sampleMovie" src=href='http://pisa.vrnewsscape.ucla.edu/newsscape_mp4_snippet.cgi?file=1c5325da-ce7f-11e6-8ca3-089e01ba034d&start=2727.8&end=2742.2'></video></a",
+	    picture:"<a><video id="sampleMovie" src="http://pisa.vrnewsscape.ucla.edu/newsscape_mp4_snippet.cgi?file=1c5325da-ce7f-11e6-8ca3-089e01ba034d&start=2727.8&end=2742.2" preload></video></a",
             question: "How happy is the dog according to the speaker?",
 	    optionLeft: "very unhappy",
             optionRight: "happiest dog in the world"
